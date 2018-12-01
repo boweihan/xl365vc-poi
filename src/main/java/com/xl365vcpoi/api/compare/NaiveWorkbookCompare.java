@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -33,6 +34,13 @@ public class NaiveWorkbookCompare implements ExcelCompareStrategy {
 		addedSheets.forEach(sheet -> {
 			sheetDifferences.add("Added: " + sheet);
 		});
+		
+		Set<String> commonSheets = Sets.union(sourceSheets, copySheets);
+
+		for (Sheet sheet : source) {
+//			if (sheet.getSheetName())
+		}
+		
 		return new ExcelCompareResult(sheetDifferences);
 	}
 }
