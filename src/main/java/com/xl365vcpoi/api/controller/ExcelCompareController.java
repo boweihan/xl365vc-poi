@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.xl365vcpoi.api.compare.ExcelCompareResult;
 import com.xl365vcpoi.api.exception.InvalidEntityException;
 import com.xl365vcpoi.api.helper.Pair;
 import com.xl365vcpoi.api.service.ExcelCompareService;
@@ -31,7 +32,7 @@ public class ExcelCompareController {
 	private ExcelFileService excelFileService;
 	
     @PostMapping("/compare")
-    public String compareExcelFiles(@RequestParam("files") MultipartFile[] files) {
+    public ExcelCompareResult compareExcelFiles(@RequestParam("files") MultipartFile[] files) {
         List<XSSFWorkbook> excelFiles = Arrays.asList(files)
                 .stream()
                 .map(file -> excelFileService.reifyExcelWorkbook(file))
@@ -45,7 +46,6 @@ public class ExcelCompareController {
         
         Pair<XSSFWorkbook, XSSFWorkbook> excelFilePair = new Pair<XSSFWorkbook, XSSFWorkbook>(excelFiles.get(0), excelFiles.get(1));
 
-        excelCompareService.compareFiles(excelFilePair);
-        return "boop";
+        return excelCompareService.compareFiles(excelFilePair);
     }
 }
