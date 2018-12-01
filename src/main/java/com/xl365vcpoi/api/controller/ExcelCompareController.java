@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xl365vcpoi.api.exception.InvalidEntityException;
+import com.xl365vcpoi.api.helper.Pair;
 import com.xl365vcpoi.api.service.ExcelCompareService;
 import com.xl365vcpoi.api.service.ExcelFileService;
 
@@ -41,8 +42,10 @@ public class ExcelCompareController {
         if (excelFiles.size() != 2) {
         	throw new InvalidEntityException("There must be exactly two excel files to compare");
         }
+        
+        Pair<XSSFWorkbook, XSSFWorkbook> excelFilePair = new Pair<XSSFWorkbook, XSSFWorkbook>(excelFiles.get(0), excelFiles.get(1));
 
-        excelCompareService.compareFiles(excelFiles);
+        excelCompareService.compareFiles(excelFilePair);
         return "boop";
     }
 }
