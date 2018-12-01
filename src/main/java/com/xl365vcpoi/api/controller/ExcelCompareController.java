@@ -41,6 +41,7 @@ public class ExcelCompareController {
         if (excelFiles.size() != 2) {
         	throw new InvalidEntityException("There must be exactly two excel files to compare");
         }
+
         excelCompareService.compareFiles(excelFiles);
         return "boop";
     }

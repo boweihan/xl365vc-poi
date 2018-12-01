@@ -17,7 +17,7 @@ public class ExcelFileService {
 	
 	public XSSFWorkbook reifyExcelWorkbook(MultipartFile file) {
 		XSSFWorkbook wb = null;
-		try (OPCPackage opcPackage = OPCPackage.open(file.getName())) {
+		try (OPCPackage opcPackage = OPCPackage.open(file.getInputStream())) {
 			wb = new XSSFWorkbook(opcPackage);
 			System.out.println(wb);
 		} catch (IOException | InvalidFormatException e) {
