@@ -1,19 +1,33 @@
 package com.xl365vcpoi.api.compare;
 
 import java.util.List;
+import java.util.Map;
 
 public class ExcelCompareResult {
-	private List<String> differences;
-	
-	public ExcelCompareResult(List<String> differences) {
-		this.setDifferences(differences);
+	private List<ComparisonDifference> sheetDifferences;
+	private Map<String, List<ComparisonDifference>> sheetToCellDifferenceMap;
+
+	public ExcelCompareResult() {}
+
+	public ExcelCompareResult(List<ComparisonDifference> sheetDifferences,
+			Map<String, List<ComparisonDifference>> sheetToCellDifferenceMap) {
+		this.setSheetDifferences(sheetDifferences);
+		this.setSheetToCellDifferenceMap(sheetToCellDifferenceMap);
 	}
 
-	public List<String> getDifferences() {
-		return differences;
+	public List<ComparisonDifference> getSheetDifferences() {
+		return sheetDifferences;
 	}
 
-	public void setDifferences(List<String> differences) {
-		this.differences = differences;
+	public void setSheetDifferences(List<ComparisonDifference> sheetDifferences) {
+		this.sheetDifferences = sheetDifferences;
+	}
+
+	public Map<String, List<ComparisonDifference>> getSheetToCellDifferenceMap() {
+		return sheetToCellDifferenceMap;
+	}
+
+	public void setSheetToCellDifferenceMap(Map<String, List<ComparisonDifference>> sheetToCellDifferenceMap) {
+		this.sheetToCellDifferenceMap = sheetToCellDifferenceMap;
 	}
 }

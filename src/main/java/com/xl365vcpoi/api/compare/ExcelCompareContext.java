@@ -9,7 +9,7 @@ public class ExcelCompareContext {
 		this.strategy = strategy;
 	}
 	
-	public ExcelCompareResult executeStrategy(XSSFWorkbook source, XSSFWorkbook reference) {
-		return strategy.compare(source, reference);
+	public ExcelCompareResult executeStrategy(XSSFWorkbook current, XSSFWorkbook backup) {
+		return strategy.compare(current, backup);
 	}
 }
